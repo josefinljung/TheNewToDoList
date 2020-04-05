@@ -2,12 +2,9 @@ body {
   background-color: #ffbcd7;
   font-family: Georgia;
   color: black;
-  margin: 0px;
-  /* FOOTER */ }
+  margin: 0px; }
   body main {
-    text-align: center;
-    /* TO DO PAGE */
-    /* EDIT PAGE */ }
+    text-align: center; }
     body main .mainheader {
       font-size: 5rem;
       font-weight: 600;

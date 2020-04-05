@@ -7,6 +7,8 @@ const todoRouter = require("./router/todoRouter");
 
 const config = require("./config/config");
 const path = require("path");
+const env = require("dotenv").config({path:"./.env"})
+
 
 const app = express();
 
