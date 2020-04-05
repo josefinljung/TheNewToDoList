@@ -1,5 +1,4 @@
 const express = require("express");
-
 const Todo = require("../model/todo");
 const router = express.Router();
 
@@ -7,15 +6,14 @@ router.post("/createtodo", async (req, res) => {
     const todos = new Todo({text: req.body.text, prio: req.body.prio});
     const response = await todos.save((error, success)=>{
         if 
-            (error){error? res.send(error.message): res.redirect("/todo")
+            (error){error? res.send(error.message): res.redirect("/")
         }
         else
-        res.redirect("/todo");
+        res.redirect("/");
         })
     });
 
-router.get("/todo", async (req, res) => {
-    
+router.get("/", async (req, res) => {
     console.log(req.query)
     const sorted = req.query.sort;
     const todos = await Todo.find().sort({prio:sorted});
@@ -25,7 +23,7 @@ router.get("/todo", async (req, res) => {
 router.get("/delete/:id", async (req, res)=>{
     console.log(req.params.id);
     await Todo.deleteOne({_id:req.params.id});
-    res.redirect("/todo");
+    res.redirect("/");
 });
 
 router.route("/update/:id")
@@ -39,7 +37,7 @@ router.route("/update/:id")
 .post(async(req, res)=>{
    await Todo.updateOne({_id:req.body.id}, 
     {$set: {text:req.body.text, prio:req.body.prio}},
-    {runValidators:true}, (error) => error? res.send(error.message):res.redirect("/todo"))
+    {runValidators:true}, (error) => error? res.send(error.message):res.redirect("/"))
 });
 
 router.get("/about", (req, res) => {
